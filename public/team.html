@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team - Prof. Abhishek Dixit</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional Team-specific styles */
+        .team-lead {
+            background: var(--off-white);
+            padding: 3rem 0;
+            margin: 2rem 0;
+        }
+
+        .lead-profile {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .lead-image img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-red);
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .lead-info h2 {
+            color: var(--primary-red);
+            border: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .lead-info h3 {
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .lead-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .lead-stat {
+            text-align: center;
+            padding: 1rem;
+            background: var(--off-white);
+            border-radius: 8px;
+            border: 2px solid var(--primary-red);
+            min-width: 120px;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .member-photo {
+            margin-bottom: 1rem;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .member-info {
+            padding: 0 1rem 1rem 1rem;
+        }
+
+        .member-role {
+            color: var(--primary-red);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-specialization {
+            color: var(--text-dark);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .member-description {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .member-contact {
+            margin-top: 1rem;
+        }
+
+        .linkedin-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #0077b5;
+            color: var(--white);
+            border-radius: 5px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .linkedin-btn:hover {
+            background: #005885;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        .linkedin-placeholder {
+            background: var(--medium-gray);
+            cursor: not-allowed;
+        }
+
+        .linkedin-placeholder:hover {
+            background: var(--medium-gray);
+            transform: none;
+        }
+
+        .alumni-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .alumni-member {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .alumni-member:hover {
+            box-shadow: 0 4px 15px var(--shadow-hover);
+            border-color: var(--primary-red);
+            transform: translateY(-5px);
+        }
+
+        .alumni-photo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: var(--off-white);
+        }
+
+        .alumni-photo img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--primary-red);
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        .alumni-info {
+            padding: 1.5rem;
+        }
+
+        .alumni-info h4 {
+            color: var(--primary-red);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .alumni-role {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .alumni-current {
+            color: var(--text-dark);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .alumni-email {
+            color: var(--primary-red);
+            font-size: 0.85rem;
+            word-break: break-all;
+        }
+
+        .achievements-timeline {
+            margin-top: 2rem;
+        }
+
+        .achievement-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--off-white);
+            border-left: 4px solid var(--primary-red);
+            border-radius: 5px;
+        }
+
+        .achievement-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            min-width: 80px;
+        }
+
+        .achievement-content h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .lead-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .lead-stats {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .lead-stat {
+                width: 100%;
+            }
+
+            .achievement-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .alumni-photo img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index9.html">Home</a></li>
+            <li><a href="research.html">Research and Projects</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="team.html" class="active">Team</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Research Team</h1>
+        <p>Brilliant minds working together to advance the frontiers of optical communication and engineering</p>
+    </header>
+
+    <main>
+        <!-- Team Lead Section -->
+        <section class="team-lead">
+            <div class="container">
+                <div class="lead-profile">
+                    <div class="lead-image">
+                        <img src="assets/Sir.png" alt="Dr. Abhishek Dixit">
+                    </div>
+                    <div class="lead-info">
+                        <h2>Dr. Abhishek Dixit</h2>
+                        <h3>Principal Investigator & Team Lead</h3>
+                        <p>Associate Professor of Electrical Engineering</p>
+                        <p class="lead-description">
+                            Leading innovative research in optical communication systems, visible light communication,
+                            and photonics.
+                            With extensive experience in academia and industry, Dr. Dixit has mentored numerous
+                            researchers and
+                            published extensively in top-tier conferences and journals.
+                        </p>
+                        <div class="lead-stats">
+                            <div class="lead-stat">
+                                <span class="stat-value">120+</span>
+                                <span class="stat-label">Publications</span>
+                            </div>
+                            <div class="lead-stat">
+                                <span class="stat-value">50+</span>
+                                <span class="stat-label">Students Mentored</span>
+                            </div>
+                            <div class="lead-stat">
+                                <span class="stat-value">10+</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Members Section -->
+        <section class="section">
+            <h2 class="section-title">Team</h2>
+            <div class="team-grid">
+                <!-- Dr. Anupma Sharma -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/WhatsApp Image 2025-07-24 at 10.36.24 AM - Anupma Sharma.jpeg"
+                            alt="Anupma Sharma">
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Anupma Sharma</h3>
+                        <p class="member-role">Post Doctoral Researcher</p>
+                        <p class="member-specialization">Free Space Optical Communication & Machine Learning</p>
+                        <p class="member-description">
+                            Expertise in Free Space Optical Communication Systems, Visible light communication systems,
+                            Reconfigurable Intelligent Surfaces, Signal Processing, OTFS, and Machine Learning.
+                        </p>
+                        <div class="member-contact">
+                            <a href="https://www.linkedin.com/in/anupma-sharma-33612876/" target="_blank"
+                                class="linkedin-btn">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Anjali Gupta -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/WhatsApp Image 2025-07-26 at 14.49.42_ffa5ffe8.jpg" alt="Anjali Gupta">
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Anjali Gupta</h3>
+                        <p class="member-role">Post Doctoral Researcher</p>
+                        <p class="member-specialization">Visible Light Communication & Free Space Optics</p>
+                        <p class="member-description">
+                            Research focuses on visible light communication, light fidelity, passive optical networks,
+                            and free space optical communication systems.
+                            <strong>Gold Medalist</strong> in M.Tech. from IIT Delhi.
+                        </p>
+                        <div class="member-contact">
+                            <a href="https://www.linkedin.com/in/anjaligupta2a7b0c3d" target="_blank"
+                                class="linkedin-btn">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shruti Jain -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/IMG-20250716-WA0095 - shruti shruti.jpg" alt="Shruti Jain">
+                    </div>
+                    <div class="member-info">
+                        <h3>Shruti Jain</h3>
+                        <p class="member-role">PhD Student</p>
+                        <p class="member-specialization">Radio-over-Fiber</p>
+                        <p class="member-description">
+                            Research focused on Radio-over-fiber communication systems and their applications.
+                        </p>
+                        <div class="member-contact">
+                            <a href="https://www.linkedin.com/in/shruti-jain-561637263" target="_blank"
+                                class="linkedin-btn">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vaishali Bhatt -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/IMG-20240718-WA0010 - vaishali bhatt.jpg" alt="Vaishali Bhatt">
+                    </div>
+                    <div class="member-info">
+                        <h3>Vaishali Bhatt</h3>
+                        <p class="member-role">PhD Student</p>
+                        <p class="member-specialization">Beam Engineering & Vector Vortex Beams</p>
+                        <p class="member-description">
+                            Specializes in Free Space Optical Communication (FSOC), Beam Engineering, Vector Vortex
+                            Beams (VVBs), Channel Modelling, and Statistical Analysis.
+                        </p>
+                        <div class="member-contact">
+                            <a href="https://www.linkedin.com/in/vaishali-bhatt-bb0387196/" target="_blank"
+                                class="linkedin-btn">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gourab Fouzder -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/gourabfouzer.png" alt="Gourab Fouzder">
+                    </div>
+                    <div class="member-info">
+                        <h3>Gourab Fouzder</h3>
+                        <p class="member-role">PhD Student</p>
+                        <p class="member-specialization">Information & Coding Theory</p>
+                        <p class="member-description">
+                            Research on Information and Coding Theory, Message Passing Decoding Algorithms, and Error
+                            Control Coding for FSO Communications.
+                        </p>
+                        <div class="member-contact">
+                            <a href="https://linkedin.com/in/fouzder-gourab" target="_blank" class="linkedin-btn">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tehreem Fatima Zaidi -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/tehreen.png" alt="Tehreem Fatima Zaidi">
+                    </div>
+                    <div class="member-info">
+                        <h3>Tehreem Fatima Zaidi</h3>
+                        <p class="member-role">PhD Student</p>
+                        <p class="member-specialization">Signal Processing & Biomedical Systems</p>
+                        <p class="member-description">
+                            Research in Signal Processing, Image processing, Biomedical signals assessment, Sleep
+                            quality monitoring, Machine learning, and Deep learning.
+                        </p>
+                        <div class="member-contact">
+                            <a href="http://linkedin.com/in/tehreem-zaidi-381932174" target="_blank"
+                                class="linkedin-btn">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sakshi Dubey -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/sakshimam.jpg" alt="Sakshi Dubey">
+                    </div>
+                    <div class="member-info">
+                        <h3>Sakshi Dubey</h3>
+                        <p class="member-role">PhD Student</p>
+                        <p class="member-specialization">Beam Engineering & Optical Systems Design</p>
+                        <p class="member-description">
+                            Research on Beam Engineering, Free Space Optical Communication Systems, Image Processing,
+                            Optical System Design, and Opto-Mechatronic Systems.
+                        </p>
+                        <div class="member-contact">
+                            <a href="https://www.linkedin.com/in/sakshi-dubey-544715154" target="_blank"
+                                class="linkedin-btn">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vaibhav Singh -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/My Passport Size - Vaibhav Singh.jpg" alt="Vaibhav Singh">
+                    </div>
+                    <div class="member-info">
+                        <h3>Vaibhav Singh</h3>
+                        <p class="member-role">PhD Student</p>
+                        <p class="member-specialization">LiFi Networks & Analog Circuit Design</p>
+                        <p class="member-description">
+                            Research on LiFi Networks, Visible Light Communication, Analog Circuit Design, Front-end
+                            Design, Optics, and PCB Design.
+                        </p>
+                        <div class="member-contact">
+                            <a href="#" class="linkedin-btn linkedin-placeholder">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anwesh Resu -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/IMG_20190410_181017 - Anwesh Goud.jpg" alt="Anwesh Resu">
+                    </div>
+                    <div class="member-info">
+                        <h3>Anwesh Resu</h3>
+                        <p class="member-role">PhD Student</p>
+                        <p class="member-specialization">LiFi Networks & Digital Signal Processing</p>
+                        <p class="member-description">
+                            Research on LiFi Networks, Visible Light Communication, Physical layer design, FPGA,
+                            Wireless Optical Communication, and Digital Signal Processing.
+                        </p>
+                        <div class="member-contact">
+                            <a href="https://www.linkedin.com/in/anwesh-resu-118083214" target="_blank"
+                                class="linkedin-btn">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arun Malik -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/arun sir.png" alt="Arun Malik">
+                    </div>
+                    <div class="member-info">
+                        <h3>Arun Malik</h3>
+                        <p class="member-role">PhD Student</p>
+                        <p class="member-specialization">FPGA & Embedded Systems</p>
+                        <p class="member-description">
+                            Field programmable gate arrays (FPGA), RTL design, SoC design and integration, embedded
+                            systems, data acquisition systems, target acquisition systems, wired, wireless and cellular
+                            networks.
+                        </p>
+                        <div class="member-contact">
+                            <a href="https://www.linkedin.com/in/arun-malik-029b171a1/" target="_blank"
+                                class="linkedin-btn">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Satyander Singh -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/satyander_pic - Satyander Singh.jpg" alt="Satyander Singh">
+                    </div>
+                    <div class="member-info">
+                        <h3>Satyander Singh</h3>
+                        <p class="member-role">Senior Project Scientist</p>
+                        <p class="member-specialization">RTL Digital Design & FPGA</p>
+                        <p class="member-description">
+                            Research on RTL Digital Design and FPGA Design for optical communication systems.
+                        </p>
+                        <div class="member-contact">
+                            <a href="http://linkedin.com/in/satyander-singh-bb672727a" target="_blank"
+                                class="linkedin-btn">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Atul Sharma -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/atul.png" alt="Atul Sharma">
+                    </div>
+                    <div class="member-info">
+                        <h3>Atul Sharma</h3>
+                        <p class="member-role">Senior Project Scientist</p>
+                        <p class="member-specialization">Free Space Optical Communication Systems</p>
+                        <p class="member-description">
+                            Research focused on Free Space Optical Communication System design and optimization.
+                        </p>
+                        <div class="member-contact">
+                            <a href="https://www.linkedin.com/in/atul-sharma-9a534a2a8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                target="_blank" class="linkedin-btn">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aravind Gunupuru -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/Photo - Gunupuru Aravind.jpg" alt="Aravind Gunupuru">
+                    </div>
+                    <div class="member-info">
+                        <h3>Aravind Gunupuru</h3>
+                        <p class="member-role">Senior Project Scientist</p>
+                        <p class="member-specialization">RTL/FPGA Design</p>
+                        <p class="member-description">
+                            Research focused on RTL/FPGA Design for optical communication applications.
+                        </p>
+                        <div class="member-contact">
+                            <a href="https://www.linkedin.com/in/aravind-gunupuru-48b93721a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BjS4Gq3v2SZKjVhCRMu4qug%3D%3D"
+                                target="_blank" class="linkedin-btn">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arya Das -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/PSX_20250628_100737 - Arya Das.jpg" alt="Arya Das">
+                    </div>
+                    <div class="member-info">
+                        <h3>Arya Das</h3>
+                        <p class="member-role">Project Scientist</p>
+                        <p class="member-specialization">Optics</p>
+                        <p class="member-description">
+                            Research focused on optical systems and related technologies.
+                        </p>
+                        <div class="member-contact">
+                            <a href="#" class="linkedin-btn linkedin-placeholder">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pratham Beniwal -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="assets/pratham.png" alt="Pratham Beniwal">
+                    </div>
+                    <div class="member-info">
+                        <h3>Pratham Beniwal</h3>
+                        <p class="member-role">Project Attendant</p>
+                        <p class="member-specialization">Project Support</p>
+                        <p class="member-description">
+                            Providing project support and assistance in various research activities.
+                        </p>
+                        <div class="member-contact">
+                            <a href="#" class="linkedin-btn linkedin-placeholder">
+                                🔗 LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alumni Section -->
+        <section class="section">
+            <h2 class="section-title">Alumni</h2>
+            <div class="alumni-grid">
+                <!-- Dr. Gaurav Pandey -->
+                <div class="alumni-member">
+                    <div class="alumni-photo">
+                        <img src="assets/alu1.png" alt="Dr. Gaurav Pandey">
+                    </div>
+                    <div class="alumni-info">
+                        <h4>Dr. Gaurav Pandey</h4>
+                        <p class="alumni-role">Post Doctoral Researcher</p>
+                        <p class="alumni-current">Assistant Professor at IIITM</p>
+                        <p class="alumni-email">gpandey@iiitm.ac.in</p>
+                    </div>
+                </div>
+
+                <!-- Dr. Abhishek Mani Shukla -->
+                <div class="alumni-member">
+                    <div class="alumni-photo">
+                        <img src="assets/alu2.png" alt="Dr. Abhishek Mani Shukla">
+                    </div>
+                    <div class="alumni-info">
+                        <h4>Dr. Abhishek Mani Shukla</h4>
+                        <p class="alumni-role">Post Doctoral Researcher</p>
+                        <p class="alumni-current">QNu Labs</p>
+                        <p class="alumni-email">shuklabhishekmani@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- Dr. Gyan Deep Verma -->
+                <div class="alumni-member">
+                    <div class="alumni-photo">
+                        <img src="assets/alug.png" alt="Dr. Gyan Deep Verma">
+                    </div>
+                    <div class="alumni-info">
+                        <h4>Dr. Gyan Deep Verma</h4>
+                        <p class="alumni-role">Post Doctoral Researcher</p>
+                        <p class="alumni-current">KAUST, Saudi Arabia</p>
+                        <p class="alumni-email">gdverma1993@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- Dr. Rishu Raj -->
+                <div class="alumni-member">
+                    <div class="alumni-photo">
+                        <img src="assets/alu4.png" alt="Dr. Rishu Raj">
+                    </div>
+                    <div class="alumni-info">
+                        <h4>Dr. Rishu Raj</h4>
+                        <p class="alumni-role">Ph.D. Student</p>
+                        <p class="alumni-current">Postdoctoral Research Scientist at Columbia University</p>
+                        <p class="alumni-email">rr.rishuraj@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- Dr. Sonali Garg -->
+                <div class="alumni-member">
+                    <div class="alumni-photo">
+                        <img src="assets/alu5.png" alt="Dr. Sonali Garg">
+                    </div>
+                    <div class="alumni-info">
+                        <h4>Dr. Sonali Garg</h4>
+                        <p class="alumni-role">Ph.D. Student</p>
+                        <p class="alumni-current">Assistant General Manager at HPCL Limited</p>
+                        <p class="alumni-email">garg.sonali29@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- Dr. Kshitiza Singh -->
+                <div class="alumni-member">
+                    <div class="alumni-photo">
+                        <img src="assets/aluk.png" alt="Dr. Kshitiza Singh">
+                    </div>
+                    <div class="alumni-info">
+                        <h4>Dr. Kshitiza Singh</h4>
+                        <p class="alumni-role">Ph.D. Student</p>
+                        <p class="alumni-current">Emerging Technology Specialist Telstra</p>
+                        <p class="alumni-email">kshitzsingh.25@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- Dr. Sukriti Garg -->
+                <div class="alumni-member">
+                    <div class="alumni-photo">
+                        <img src="assets/IMG_20210220_192851_Bokeh - Sukriti Garg.jpg" alt="Dr. Sukriti Garg">
+                    </div>
+                    <div class="alumni-info">
+                        <h4>Dr. Sukriti Garg</h4>
+                        <p class="alumni-role">Ph.D. Student</p>
+                        <p class="alumni-current">Visiting Assistant Professor at BITS, Pilani</p>
+                        <p class="alumni-email">sukritgirl@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Achievements -->
+        <section class="section">
+            <h2 class="section-title">Team Achievements</h2>
+            <div class="achievements-timeline">
+                <div class="achievement-item">
+                    <div class="achievement-year">2024</div>
+                    <div class="achievement-content">
+                        <h3>Outstanding Research in Optical Communication</h3>
+                        <p>Team's collaborative work on visible light communication and free space optics gained
+                            international recognition</p>
+                    </div>
+                </div>
+
+                <div class="achievement-item">
+                    <div class="achievement-year">2024</div>
+                    <div class="achievement-content">
+                        <h3>Advanced Research Funding</h3>
+                        <p>Secured major research grants for LiFi networks and optical communication systems</p>
+                    </div>
+                </div>
+
+                <div class="achievement-item">
+                    <div class="achievement-year">2023</div>
+                    <div class="achievement-content">
+                        <h3>High-Impact Publications</h3>
+                        <p>Multiple papers published in top-tier optical communication journals with 120+ total
+                            publications</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Patents Section -->
+        <section class="section">
+            <h2 class="section-title">Patents & Intellectual Property</h2>
+            <div class="achievements-timeline">
+                <div class="achievement-item">
+                    <div class="achievement-year" style="font-size: 1.2rem;">US20200208988A1</div>
+                    <div class="achievement-content">
+                        <h3>System and method for identifying passive optical identifier tags</h3>
+                        <p><strong>Filed:</strong> July 2020</p>
+                        <p>System and method for identifying passive optical identifier tags for indoor positioning and
+                            visible light communication applications.</p>
+                        <p><strong>Inventors:</strong> A. Dixit, R. Raj, and K. Saxena</p>
+                    </div>
+                </div>
+
+                <div class="achievement-item">
+                    <div class="achievement-year" style="font-size: 1.2rem;">27/2020</div>
+                    <div class="achievement-content">
+                        <h3>System and method for identifying passive optical identifier tags (Indian Patent)</h3>
+                        <p><strong>Filed:</strong> July 2020</p>
+                        <p>Indian patent for system and method for identifying passive optical identifier tags for
+                            advanced optical communication systems.</p>
+                        <p><strong>Inventors:</strong> A. Dixit, R. Raj, and K. Saxena</p>
+                    </div>
+                </div>
+
+                <div class="achievement-item">
+                    <div class="achievement-year" style="font-size: 1.2rem;">565729</div>
+                    <div class="achievement-content">
+                        <h3>A Method for Allocating Channels for LDPC Codes and a System Thereof</h3>
+                        <p><strong>Filed:</strong> October 2021 (Indian Patent)</p>
+                        <p>Method for efficient channel allocation for Low-Density Parity-Check (LDPC) codes in optical
+                            communication systems.</p>
+                        <p><strong>Inventors:</strong> A. Dixit, Sonali, and V. K. Jain</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Dynamic CMS Team Members (managed via Admin Dashboard) -->
+        <section id="cms-team-section" style="display:none;">
+            <div class="container">
+                <h2>Current Team Members</h2>
+                <div id="cms-team-grid" class="team-grid"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Prof. Abhishek Dixit | Indian Institute of Technology Delhi</p>
+        <p>Department of Electrical Engineering | Hauz Khas, New Delhi - 110016</p>
+    </footer>
+    <script src="js/team.js"></script>
+</body>
+</html>

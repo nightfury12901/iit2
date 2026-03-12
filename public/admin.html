@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Admin - Prof. Abhishek Dixit</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-wrap {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        .admin-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+        /* Tab navigation */
+        .admin-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+        .admin-tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-gray);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s ease;
+        }
+        .admin-tab-btn:hover { color: var(--primary-red); }
+        .admin-tab-btn.active {
+            color: var(--primary-red);
+            border-bottom-color: var(--primary-red);
+        }
+        .admin-tab-pane { display: none; }
+        .admin-tab-pane.active { display: block; }
+
+        /* Forms */
+        .cms-form {
+            background: var(--off-white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        .cms-form h3 {
+            margin-top: 0;
+            color: var(--dark-red);
+            font-size: 1.1rem;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .form-full { grid-column: 1 / -1; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: var(--text-dark);
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.6rem 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            font-family: inherit;
+        }
+        .form-group textarea { min-height: 80px; resize: vertical; }
+        .form-submit {
+            margin-top: 1rem;
+            background: var(--primary-red);
+            color: #fff;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .form-submit:hover { background: var(--dark-red); }
+        .form-submit:disabled { background: #ccc; cursor: not-allowed; }
+
+        /* Items list */
+        .items-list { margin-top: 1.5rem; }
+        .items-list h3 { margin-bottom: 1rem; color: var(--dark-red); font-size: 1.1rem; }
+        .item-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1rem;
+            background: var(--off-white);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+        .item-row img {
+            width: 50px; height: 50px;
+            object-fit: cover; border-radius: 4px;
+            flex-shrink: 0;
+        }
+        .item-info { flex: 1; min-width: 0; }
+        .item-info strong { display: block; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .item-info small { color: var(--text-gray); font-size: 0.8rem; }
+        .delete-btn {
+            background: #e74c3c; color: #fff;
+            border: none; padding: 0.4rem 0.8rem;
+            border-radius: 4px; cursor: pointer;
+            font-size: 0.8rem; flex-shrink: 0;
+            transition: background 0.2s;
+        }
+        .delete-btn:hover { background: #c0392b; }
+
+        /* Scholar sync */
+        .sync-card {
+            background: var(--off-white);
+            border-radius: 8px; padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .sync-btn {
+            font-size: 1rem; padding: 0.8rem 2rem;
+            background: var(--primary-red); color: #fff;
+            border: none; border-radius: 5px;
+            cursor: pointer; font-weight: 600;
+            margin-top: 1rem; transition: background 0.2s;
+        }
+        .sync-btn:hover { background: var(--dark-red); }
+        .sync-btn:disabled { background: #ccc; cursor: not-allowed; }
+        #sync-status { margin-top: 1rem; font-weight: bold; display: none; }
+        .ok { color: green; } .err { color: red; }
+
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="index9.html">Home</a></li>
+        <li><a href="research.html">Research and Projects</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="admin-wrap">
+    <div class="admin-header">
+        <h1>Site Administration</h1>
+        <p>Manage all website content from one place</p>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="admin-tabs">
+        <button class="admin-tab-btn active" data-tab="scholar">📚 Publications</button>
+        <button class="admin-tab-btn" data-tab="team">👥 Team</button>
+        <button class="admin-tab-btn" data-tab="gallery">🖼️ Gallery</button>
+        <button class="admin-tab-btn" data-tab="projects">🔬 Projects & Patents</button>
+    </div>
+
+    <!-- ===== PUBLICATIONS TAB ===== -->
+    <div id="tab-scholar" class="admin-tab-pane active">
+        <div class="sync-card">
+            <h3 style="margin-top:0;color:var(--dark-red)">Sync from Google Scholar</h3>
+            <p>Click below to pull the latest publications, citation counts, and metrics from Google Scholar. This takes about 1–2 minutes.</p>
+            <button id="admin-sync-btn" class="sync-btn">🔄 Sync Google Scholar Data</button>
+            <div id="sync-status"></div>
+        </div>
+    </div>
+
+    <!-- ===== TEAM TAB ===== -->
+    <div id="tab-team" class="admin-tab-pane">
+        <div class="cms-form">
+            <h3>➕ Add Team Member</h3>
+            <form id="team-form" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="name" required placeholder="e.g. Rahul Sharma">
+                    </div>
+                    <div class="form-group">
+                        <label>Role / Designation *</label>
+                        <input type="text" name="role" required placeholder="e.g. Ph.D. Scholar">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="category">
+                            <option>PhD Scholars</option>
+                            <option>MTech Students</option>
+                            <option>Project Staff</option>
+                            <option>Alumni</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Profile Photo (optional)</label>
+                        <input type="file" name="image" accept="image/*">
+                    </div>
+                    <div class="form-group form-full">
+                        <label>Details (Research Area / Co-supervisor etc.)</label>
+                        <textarea name="details" placeholder="e.g. Research Area: Photonics, Co-supervisor: Prof. XYZ"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="form-submit">Add Member</button>
+            </form>
+        </div>
+
+        <div class="items-list">
+            <h3>Current Team Members</h3>
+            <div id="team-list"><p>Loading...</p></div>
+        </div>
+    </div>
+
+    <!-- ===== GALLERY TAB ===== -->
+    <div id="tab-gallery" class="admin-tab-pane">
+        <div class="cms-form">
+            <h3>➕ Upload Photo to Gallery</h3>
+            <form id="gallery-form" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Image File *</label>
+                        <input type="file" name="image" accept="image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="category">
+                            <option>Lab</option>
+                            <option>Events</option>
+                            <option>Conferences</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-full">
+                        <label>Caption</label>
+                        <input type="text" name="caption" placeholder="e.g. Lab Inauguration 2024">
+                    </div>
+                </div>
+                <button type="submit" class="form-submit">Upload Photo</button>
+            </form>
+        </div>
+
+        <div class="items-list">
+            <h3>Current Gallery Photos</h3>
+            <div id="gallery-list"><p>Loading...</p></div>
+        </div>
+    </div>
+
+    <!-- ===== PROJECTS / PATENTS TAB ===== -->
+    <div id="tab-projects" class="admin-tab-pane">
+        <div class="cms-form">
+            <h3>➕ Add Project / Research / Patent</h3>
+            <form id="projects-form">
+                <div class="form-grid">
+                    <div class="form-group form-full">
+                        <label>Title *</label>
+                        <input type="text" name="title" required placeholder="e.g. Photonic Crystal Fiber Sensors">
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select name="type">
+                            <option>Project</option>
+                            <option>Patent</option>
+                            <option>Research</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Role</label>
+                        <select name="role">
+                            <option>PI</option>
+                            <option>Co-PI</option>
+                            <option>Collaborator</option>
+                            <option>Inventor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Funding Agency / Journal</label>
+                        <input type="text" name="agency" placeholder="e.g. SERB, DST, IEEE">
+                    </div>
+                    <div class="form-group">
+                        <label>Duration / Year</label>
+                        <input type="text" name="duration" placeholder="e.g. 2023–2026">
+                    </div>
+                    <div class="form-group form-full">
+                        <label>Description</label>
+                        <textarea name="description" placeholder="Brief description of the project or patent..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="form-submit">Add Entry</button>
+            </form>
+        </div>
+
+        <div class="items-list">
+            <h3>Current Projects & Patents</h3>
+            <div id="projects-list"><p>Loading...</p></div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Prof. Abhishek Dixit. All rights reserved.</p>
+    <p>Indian Institute of Technology Delhi</p>
+</footer>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

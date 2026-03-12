@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Prof. Abhishek Dixit</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional Gallery-specific styles */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 2rem auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 500px;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: var(--off-white);
+        }
+
+        .carousel-caption {
+            color: var(--primary-red);
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            border-bottom: 3px solid var(--primary-red);
+            padding-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-slide {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index9.html">Home</a></li>
+            <li><a href="research.html">Research and Projects</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Gallery</h1>
+        <p>Moments from research, teaching, and academic life</p>
+    </header>
+
+    <main>
+        <!-- NEW: Lab Photos (Placeholders) -->
+        <section class="section">
+            <h2 class="carousel-caption">Lab Photos</h2>
+            <div id="carousel-lab" class="carousel-container">
+                <div class="carousel-slides">
+                    <div class="carousel-slide">
+                        <img src="assets/placeholder.jpg" alt="Lab Photo 1 Placeholder">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/placeholder.jpg" alt="Lab Photo 2 Placeholder">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/placeholder.jpg" alt="Lab Photo 3 Placeholder">
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; color: var(--text-gray); margin-top: 10px;"><em>(Please place your lab photos
+                    in the assets folder and update these placeholders)</em></p>
+        </section>
+
+        <!-- Carousel 1: Research and Lab Highlights -->
+        <section class="section">
+            <h2 class="carousel-caption">Research and Lab Highlights</h2>
+            <div id="carousel1" class="carousel-container">
+                <div class="carousel-slides">
+                    <div class="carousel-slide">
+                        <img src="assets/1738652320444.jpg" alt="Quantum Computing Lab">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/1729096233505.jpg" alt="Research team meeting">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/1729096230102.jpg" alt="High-performance computing cluster">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carousel 2: Bharat Expo Convocation -->
+        <section class="section">
+            <h2 class="carousel-caption">Bharat Expo Convocation</h2>
+            <div id="carousel2" class="carousel-container">
+                <div class="carousel-slides">
+                    <div class="carousel-slide">
+                        <img src="assets/b1.jpeg" alt="Keynote speech at conference">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/b4.jpeg" alt="Interactive classroom session">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/b5.jpeg" alt="Expert panel discussion">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/b6.jpeg" alt="Student project showcase">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/b7.jpeg" alt="AI Ethics workshop">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/b9.jpeg" alt="PhD graduation ceremony">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Dynamic CMS Gallery Photos (managed via Admin Dashboard) -->
+        <section id="cms-gallery-section" style="display:none;">
+            <div class="container">
+                <h2>Photos</h2>
+                <div id="cms-gallery-grid" class="gallery-grid"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Prof. Abhishek Dixit | Indian Institute of Technology Delhi</p>
+        <p>Department of Electrical Engineering | Hauz Khas, New Delhi - 110016</p>
+    </footer>
+    <script src="js/gallery.js"></script>
+    <script>
+        // Carousel auto-slide functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const initializeCarousel = (carouselId, interval) => {
+                const carousel = document.getElementById(carouselId);
+                if (!carousel) return;
+
+                const slidesContainer = carousel.querySelector('.carousel-slides');
+                const slides = carousel.querySelectorAll('.carousel-slide');
+                let currentIndex = 0;
+
+                function showNextSlide() {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    const offset = -currentIndex * 100;
+                    slidesContainer.style.transform = `translateX(${offset}%)`;
+                }
+
+                setInterval(showNextSlide, interval);
+            };
+
+            // Initialize carousels with different speeds
+            initializeCarousel('carousel-lab', 3500);
+            initializeCarousel('carousel1', 3000);
+            initializeCarousel('carousel2', 2500);
+        });
+    </script>
+</body>
+
+</html>
