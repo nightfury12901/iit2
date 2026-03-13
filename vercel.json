@@ -1,35 +1,9 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "public/**/*",
-      "use": "@vercel/static"
-    }
-  ],
   "rewrites": [
     {
-      "source": "/api/publications",
-      "destination": "/api/publication.js"
-    },
-    {
-      "source": "/api/years",
-      "destination": "/api/years.js"
-    },
-    {
-      "source": "/api/search",
-      "destination": "/api/search.js"
-    },
-    {
-      "source": "/api/test-db",
-      "destination": "/api/test-db.js"
-    },
-    {
-      "source": "/api/admin/sync-scholar",
-      "destination": "/api/admin/sync-scholar.js"
+      "source": "/api/(.*)",
+      "destination": "/server.js"
     },
     {
       "source": "/(.*)",
