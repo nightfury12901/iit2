@@ -94,6 +94,30 @@ class ScholarPublications {
         }
     }
 
+    groupPublicationsByYear(publications) {
+        if (!publications) return {};
+        return publications.reduce((acc, pub) => {
+            const year = pub.year || 'Unknown';
+            if (!acc[year]) acc[year] = [];
+            acc[year].push(pub);
+            return acc;
+        }, {});
+    }
+
+    updateProfileHeader(profile, meta) {
+        console.log('Profile updated:', profile);
+    }
+
+    updateLastUpdated(dateString) {
+        if (dateString) {
+            console.log('Last updated:', new Date(dateString).toLocaleString());
+        }
+    }
+
+    setupFilters() {
+        console.log('Filters setup skipped for simple list view');
+    }
+
     renderPublications() {
         const container = document.getElementById('publications-container');
         if (!container) return;
@@ -277,7 +301,7 @@ class ScholarPublications {
 async function checkApiStatus() {
     try {
         const apiBaseUrl = window.location.hostname === 'localhost' 
-            ? 'http://localhost:3000/api' 
+            ? 'http://localhost:5000/api' 
             : '/api';
 
         const response = await fetch(`${apiBaseUrl}/test-db`);
